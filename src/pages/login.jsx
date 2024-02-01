@@ -3,7 +3,7 @@ import { Flex, Box, Heading, Input, Button, useToast } from "@chakra-ui/react";
 import { auth, firestore } from "../../firebase/firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useUser } from "../../context/UsersContext";
+import { useUser } from "../context/UsersContext";
 import { useRouter } from "next/router";
 
 const Login = () => {
@@ -23,7 +23,6 @@ const Login = () => {
       );
       const user = userCredential.user;
 
-      // Fetch additional user data, e.g., role, from Firestore
       const q = query(
         collection(firestore, "users"),
         where("uid", "==", user.uid)
@@ -34,20 +33,16 @@ const Login = () => {
         const userData = querySnapshot.docs[0].data();
         const userRole = userData.role;
 
-        // Update user in the context
         updateUser({
           uid: user.uid,
           email: user.email,
-          username: userData.username, // assuming you have a username field
+          username: userData.username,
           role: userRole,
         });
 
-        // Redirect based on user role
         if (userRole === "admin") {
-          console.log("Redirecting to /admin");
           router.push("/admin");
         } else {
-          console.log("Redirecting to /user");
           router.push("/user");
         }
 

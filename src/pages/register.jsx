@@ -1,4 +1,3 @@
-// Register.js
 import React, { useState } from "react";
 import { Flex, Box, Heading, Input, Button, useToast } from "@chakra-ui/react";
 import { auth, firestore } from "../../firebase/firebase";
@@ -14,7 +13,6 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      // Step 1: Create user in Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -22,10 +20,8 @@ const Register = () => {
       );
       const user = userCredential.user;
 
-      // Step 2: Update user profile (including username)
       await updateProfile(user, { displayName: username });
 
-      // Step 3: Store additional user data in Firestore
       const usersCollection = collection(firestore, "users");
       await addDoc(usersCollection, {
         uid: user.uid,
