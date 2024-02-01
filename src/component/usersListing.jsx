@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   ChakraProvider,
   Box,
@@ -10,17 +10,17 @@ import {
   Td,
   Spinner,
   TableContainer,
-} from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase/firebase';
+} from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 export default function Users() {
   const [allUsers, setAllUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(collection(db, 'users'));
+      const q = query(collection(db, "users"));
       const querySnapshot = await getDocs(q);
       const users = [];
       querySnapshot.forEach((doc) => {
@@ -37,12 +37,12 @@ export default function Users() {
   };
 
   return loading ? (
-    <Spinner size='xl' />
+    <Spinner size="xl" />
   ) : (
     <ChakraProvider>
       <Box p={4}>
         <TableContainer>
-          <Table variant='simple'>
+          <Table variant="simple">
             <Thead>
               <Tr>
                 <Th>ID</Th>
@@ -56,7 +56,7 @@ export default function Users() {
                 <Tr
                   key={user.uid}
                   onClick={() => handleRowClick(user.uid)}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
                   <Td>{user.uid}</Td>
                   <Td>{user.username}</Td>

@@ -19,13 +19,13 @@ const Login = () => {
       const userCredential = await signInWithEmailAndPassword(
         authInstance,
         email,
-        password
+        password,
       );
       const user = userCredential.user;
 
       const q = query(
         collection(firestore, "users"),
-        where("uid", "==", user.uid)
+        where("uid", "==", user.uid),
       );
       const querySnapshot = await getDocs(q);
 
