@@ -60,7 +60,7 @@ export default function UserDetails() {
   }, [id]);
 
   return (
-    // <AuthWrapper authRoles={["user"]}>
+    <AuthWrapper authRoles={["user"]}>
     <>
       <Header />
       <Flex direction="column" align="center" justify="center" h="100vh" p={6}>
@@ -139,6 +139,6 @@ export default function UserDetails() {
         </Flex>
       </Flex>
     </>
-    // </AuthWrapper>
+    </AuthWrapper>
   );
 }

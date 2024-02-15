@@ -3,7 +3,7 @@ import { Flex, Box, Heading, Input, Button, useToast } from "@chakra-ui/react";
 import { auth, firestore } from "../../firebase/firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useUser } from "../../context/UsersContext";
+import { useUser } from "../context/UsersContext";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
