@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useUser } from "../../context/UsersContext";
+import { useUser } from "../context/UsersContext";
 import { useRouter } from "next/router";
 
 export default function AuthWrapper({ authRoles, children }) {
