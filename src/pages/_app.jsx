@@ -1,5 +1,6 @@
 import { ChakraProvider, ColorModeProvider, CSSReset } from "@chakra-ui/react";
 import { UserProvider } from "../../context/UsersContext";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function MyApp({ Component, pageProps }) {
   return (

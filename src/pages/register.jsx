@@ -1,4 +1,3 @@
-// Register.js
 import React, { useState } from "react";
 import { Flex, Box, Heading, Input, Button, useToast } from "@chakra-ui/react";
 import { auth, firestore } from "../../firebase/firebase";
@@ -18,7 +17,7 @@ const Register = () => {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
       const user = userCredential.user;
       await updateProfile(user, { displayName: username });

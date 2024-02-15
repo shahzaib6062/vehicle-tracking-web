@@ -1,8 +1,7 @@
-// Logout.js
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import { auth } from "../../firebase/firebase";
-import { useUser } from "../../context/UsersContext";
+import { useUser } from "../context/UsersContext";
 import { useRouter } from "next/router";
 
 const Logout = () => {
@@ -12,6 +11,7 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
+
       updateUser({
         uid: null,
         email: "",

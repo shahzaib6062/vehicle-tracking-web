@@ -5,6 +5,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useUser } from "../../context/UsersContext";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
 
 const Home = () => {
   const [email, setEmail] = useState("");
