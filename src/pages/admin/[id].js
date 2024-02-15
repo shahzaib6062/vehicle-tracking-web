@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { db, firestore } from "../../../firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import AuthWrapper from "@/component/authWrapper";
 export default function UserDetails() {
   const router = useRouter();
   const { id } = router.query;
-  console.log("🚀 ~ UserDetails ~ id:", id);
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -25,16 +25,18 @@ export default function UserDetails() {
   }, [id]);
 
   if (!userData) {
+    console.log("🚀 ~ UserDetails ~ userData:", userData);
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <h1>User Details</h1>
-      <p>ID: {userData.id}</p>
-      <p>Name: {userData.name}</p>
-      <p>Email: {userData.email}</p>
-      {/* Display more user details as needed */}
-    </div>
+    <AuthWrapper authRoles={["admin"]}>
+      <div>
+        <h1>User Details</h1>
+        <p>ID: {userData.id}</p>
+        <p>Name: {userData.name}</p>
+        <p>Email: {userData.email}</p>
+      </div>
+    </AuthWrapper>
   );
 }

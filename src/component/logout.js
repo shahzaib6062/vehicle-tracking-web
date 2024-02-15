@@ -11,19 +11,14 @@ const Logout = () => {
 
   const handleLogout = async () => {
     try {
-      // Perform the logout operation
       await auth.signOut();
-
-      // Update user context with empty values
       updateUser({
         uid: null,
         email: "",
         username: "",
         role: "",
       });
-
-      // Redirect to the login page
-      router.push("/login");
+      router.push("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }

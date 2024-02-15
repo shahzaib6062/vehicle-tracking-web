@@ -14,8 +14,6 @@ import Logout from "./logout";
 import { useUser } from "../../context/UsersContext";
 const Header = () => {
   const { currentUser } = useUser();
-  console.log("🚀 ~ Header ~ currentUser:", currentUser);
-
   return (
     <Flex p={4} bg="teal.500" color="white">
       <Box>
