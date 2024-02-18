@@ -1,0 +1,154 @@
+.app-container {
+  width: 90%;
+  margin: auto;
+}
+
+.table-wrapper {
+}
+
+.table-header {
+  background-color: rgb(84, 155, 212);
+}
+
+.table-heading {
+  color: white !important;
+  font-size: 17px !important;
+}
+
+.table-data {
+  color: cadetblue;
+  font-weight: 500;
+  border: 2px solid rgba(106, 167, 169, 0.314) !important;
+}
+
+.App-Logo {
+  font-size: 30px;
+  color: beige;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.content-container {
+  width: 80%;
+  margin: auto;
+  padding: 80px 0px;
+}
+
+.user-profile-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-title {
+  font-size: 34px;
+  color: cadetblue;
+  font-weight: 600;
+}
+
+.profile-email {
+  font-size: 20px;
+  color: black;
+  font-weight: 500;
+}
+
+.icon-otr {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+.icon-inr {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.v-heading {
+  font-size: 40px;
+  color: cadetblue;
+  font-weight: 600;
+}
+
+.v-card-wrapper {
+  /* background-color: gainsboro !important; */
+  background-color: transparent !important;
+  /* border-radius: 30px !important; */
+  display: flex;
+  gap: 30px;
+}
+
+.card-img-otr {
+  background-color: white;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.v-card-body {
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 20px;
+  /* border-radius: 30px; */
+}
+
+.content-wrap-otr {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.content-wrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.v-tite {
+  font-size: 15px;
+  color: black;
+  opacity: 30%;
+
+  font-weight: 700;
+}
+
+.v-title-name {
+  font-size: 15px;
+  color: black;
+  opacity: 90%;
+  font-weight: 500;
+}
+
+.add-btn {
+  background-color: gainsboro;
+  font-size: 12px;
+  color: grey;
+  opacity: 90%;
+  padding: 5px 10px;
+  border: 1px solid lightblue;
+}
+
+.fs-12 {
+  font-size: 12px;
+  color: black;
+  opacity: 30%;
+}
+
+@media screen and (min-width: 1200px) {
+  .content-wrap-otr {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 992px) {
+  .content-wrap-otr {
+    flex-direction: row;
+  }
+}

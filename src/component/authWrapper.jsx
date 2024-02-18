@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 export default function AuthWrapper({ authRoles, children }) {
   const { user } = useUser();
-  console.log("🚀 ~ AuthWrapper ~ user:", user)
+  console.log("🚀 ~ AuthWrapper ~ user:", user);
   const router = useRouter();
 
   useEffect(() => {

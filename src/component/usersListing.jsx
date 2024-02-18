@@ -39,35 +39,37 @@ export default function Users() {
   return loading ? (
     <Spinner size="xl" />
   ) : (
-    <ChakraProvider>
-      <Box p={4}>
-        <TableContainer>
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>ID</Th>
-                <Th>Name</Th>
-                <Th>Email</Th>
-                <Th>Role</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {allUsers.map((user) => (
-                <Tr
-                  key={user.uid}
-                  onClick={() => handleRowClick(user.uid)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <Td>{user.uid}</Td>
-                  <Td>{user.username}</Td>
-                  <Td>{user.email}</Td>
-                  <Td>{user.role}</Td>
+    <div className="app-container">
+      <ChakraProvider>
+        <Box p={4}>
+          <TableContainer>
+            <Table className="table-wrapper">
+              <Thead className="table-header">
+                <Tr>
+                  <Th className="table-heading">ID</Th>
+                  <Th className="table-heading">Name</Th>
+                  <Th className="table-heading">Email</Th>
+                  <Th className="table-heading">Role</Th>
                 </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
-      </Box>
-    </ChakraProvider>
+              </Thead>
+              <Tbody>
+                {allUsers.map((user) => (
+                  <Tr
+                    key={user.uid}
+                    onClick={() => handleRowClick(user.uid)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <Td className="table-data">{user.uid}</Td>
+                    <Td className="table-data">{user.username}</Td>
+                    <Td className="table-data">{user.email}</Td>
+                    <Td className="table-data">{user.role}</Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </Box>
+      </ChakraProvider>
+    </div>
   );
 }
