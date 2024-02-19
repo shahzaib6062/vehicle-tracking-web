@@ -16,18 +16,26 @@ const Header = () => {
   const { currentUser } = useUser();
 
   return (
-    <Flex p={4} bg="teal.500" color="white">
+    <Flex
+      p={4}
+      bg="teal.500"
+      color="white"
+      align={"center"}
+      justifyContent={"space-between"}
+    >
       <Box>
-        <span>Your App Name</span>
+        <span className="App-Logo">View Tech</span>
       </Box>
-      <Spacer />
-      <Avatar
-        size="sm"
-        name={currentUser?.username}
-        src={currentUser?.avatar}
-      />
-      {currentUser?.username}
-      <Logout />
+
+      <Flex align={"center"} gap={"10px"}>
+        <Avatar
+          size="sm"
+          name={currentUser?.username}
+          src={currentUser?.avatar}
+        />
+        {currentUser?.username}
+        <Logout />
+      </Flex>
     </Flex>
   );
 };
