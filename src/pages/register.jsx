@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Flex, Box, Heading, Input, Button, useToast } from "@chakra-ui/react";
 import { auth, firestore } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
 import AuthWrapper from "@/component/authWrapper";
 
 const Register = () => {
@@ -19,15 +19,19 @@ const Register = () => {
         email,
         password,
       );
+
       const user = userCredential.user;
+
       await updateProfile(user, { displayName: username });
-      const usersCollection = collection(firestore, "users");
-      await addDoc(usersCollection, {
-        uid: user.uid,
-        email: user.email,
-        username: username,
-        role: role,
+
+      const docRef = doc(collection(firestore, "users"), user.uid);
+      await setDoc(docRef, {
+        username,
+        email,
+        role,
       });
+
+      const userDoc = await getDoc(docRef);
 
       toast({
         title: "Registration successful",

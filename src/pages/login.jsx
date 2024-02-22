@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Flex, Box, Heading, Input, Button, useToast } from "@chakra-ui/react";
-import { auth, firestore } from "../../firebase/firebase";
+import { firestore } from "../../firebase/firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, getDoc, doc } from "firebase/firestore";
 import { useUser } from "../context/UsersContext";
 import { useRouter } from "next/router";
 
@@ -21,38 +21,14 @@ const Login = () => {
         email,
         password,
       );
+
       const user = userCredential.user;
 
-      const q = query(
-        collection(firestore, "users"),
-        where("uid", "==", user.uid),
-      );
-      const querySnapshot = await getDocs(q);
+      const docRef = doc(collection(firestore, "users"), user.uid);
 
-      if (!querySnapshot.empty) {
-        const userData = querySnapshot.docs[0].data();
-        const userRole = userData.role;
+      const userDoc = await getDoc(docRef);
 
-        updateUser({
-          uid: user.uid,
-          email: user.email,
-          username: userData.username,
-          role: userRole,
-        });
-
-        if (userRole === "admin") {
-          router.push("/admin");
-        } else {
-          router.push("/user");
-        }
-
-        toast({
-          title: "Login successful",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-      } else {
+      if (!userDoc.exists())
         toast({
           title: "Login failed",
           description: "User data not found",
@@ -60,7 +36,29 @@ const Login = () => {
           duration: 3000,
           isClosable: true,
         });
+
+      const userData = userDoc.data();
+      const userRole = userData.role;
+
+      updateUser({
+        uid: userDoc.id,
+        email: user.email,
+        username: userData.username,
+        role: userRole,
+      });
+
+      if (userRole === "admin") {
+        router.push("/admin");
+      } else {
+        router.push("/user");
       }
+
+      toast({
+        title: "Login successful",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     } catch (error) {
       toast({
         title: "Login failed",
