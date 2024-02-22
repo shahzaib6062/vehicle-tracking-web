@@ -7,7 +7,7 @@ import {
   CardBody,
   Container,
   SimpleGrid,
-  Card
+  Card,
 } from "@chakra-ui/react";
 import Header from "@/component/header";
 import AuthWrapper from "@/component/authWrapper";
@@ -22,7 +22,18 @@ export default function UserDetails() {
   const [userData, setUserData] = useState(null);
   const [vehicleData, setVehicleData] = useState(null);
   const [location, setLocation] = useState(null);
-  console.log("🚀 ~ UserDetails ~ location:", location);
+
+  const fetchDataLocation = useCallback(async () => {
+    const locationQ = query(
+      collection(db, "locations"),
+      // ,      where("uid", "==", id)
+    );
+    const locationSnapshot = await getDocs(locationQ);
+    locationSnapshot.forEach((locationDoc) => {
+      setLocation(locationDoc.data());
+    });
+  }, []);
+
   useEffect(() => {
     const fetchUserData = async () => {
       const q = query(collection(db, "users"), where("uid", "==", id));
@@ -45,19 +56,7 @@ export default function UserDetails() {
       fetchVehicleData();
       fetchDataLocation();
     }
-  }, [id]);
-
-  const fetchDataLocation = useCallback(async () => {
-    const locationQ = query(
-      collection(db, "locations"),
-      // ,      where("uid", "==", id)
-    );
-    const locationSnapshot = await getDocs(locationQ);
-    locationSnapshot.forEach((locationDoc) => {
-      setLocation(locationDoc.data());
-      console.log(locationDoc.id, " => ", locationDoc.data());
-    });
-  }, [id]);
+  }, [fetchDataLocation, id]);
 
   const vehicleInfo = [
     {
@@ -81,7 +80,7 @@ export default function UserDetails() {
           h="100vh"
           p={6}
         >
-   
+
           <Flex
             direction={{ base: "column", md: "row" }}
             align="center"
@@ -115,7 +114,7 @@ export default function UserDetails() {
               )}
             </Stack>
 
-            
+
             </Flex>
             {vehicleData && (
               <Box
