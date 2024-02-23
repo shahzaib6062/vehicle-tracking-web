@@ -9,7 +9,6 @@ import {
   SimpleGrid,
   Card,
 } from "@chakra-ui/react";
-import Header from "@/components/header";
 import AuthWrapper from "@/components/authWrapper";
 import { db } from "../../firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -72,7 +71,6 @@ export default function UserDetails() {
   return (
     <AuthWrapper authRoles={["user"]}>
       <>
-        <Header />
         {/* <Flex
           direction="column"
           align="center"
