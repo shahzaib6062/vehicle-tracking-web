@@ -2,17 +2,17 @@ import React from "react";
 import AuthWrapper from "@/components/authWrapper";
 import AdminLayout from "@/layouts/AdminLayout";
 import Head from "next/head";
-import { Heading } from "@chakra-ui/layout";
+import UsersTable from "@/components/usersTable";
 
 function AdminDashboard() {
   return (
     <AuthWrapper authRoles={["admin"]}>
       <Head>
-        <title>Admin | Vehicle Tracker</title>
+        <title>Users | Vehicle Tracker</title>
       </Head>
 
       <AdminLayout>
-        <Heading>Admin Home</Heading>
+        <UsersTable />
       </AdminLayout>
     </AuthWrapper>
   );

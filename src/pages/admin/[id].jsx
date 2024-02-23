@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { db, firestore } from "../../firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import AuthWrapper from "@/component/authWrapper";
+import AuthWrapper from "@/components/authWrapper";
 import { doc } from "firebase/firestore";
 export default function UserDetails() {
   const router = useRouter();

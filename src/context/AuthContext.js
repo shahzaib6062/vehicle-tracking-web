@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
@@ -14,16 +14,12 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
-  const router = useRouter();
-
   useEffect(() => {
-    if (router.pathname === "/login" || router.pathname === "/register") {
-      if (user) router.push("/");
+    if (Router.pathname === "/login" || Router.pathname === "/register") {
+      if (user) Router.push("/");
     } else {
-      if (!user) router.push("/login");
+      if (!user) Router.push("/login");
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (

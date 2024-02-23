@@ -9,12 +9,12 @@ import {
   SimpleGrid,
   Card,
 } from "@chakra-ui/react";
-import Header from "@/component/header";
-import AuthWrapper from "@/component/authWrapper";
+import Header from "@/components/header";
+import AuthWrapper from "@/components/authWrapper";
 import { db } from "../../firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { Image } from "@chakra-ui/react";
-import MapComponent from "@/component/MapComponent";
+import MapComponent from "@/components/MapComponent";
 
 export default function UserDetails() {
   const router = useRouter();
