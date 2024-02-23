@@ -21,6 +21,7 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { signOut } from "@firebase/auth";
+import Router from "next/router";
 import {
   FiHome,
   FiUsers,
@@ -32,7 +33,7 @@ import {
 const linkItems = [
   { name: "Home", icon: FiHome, href: "/admin" },
   { name: "Users", icon: FiUsers, href: "/admin/users" },
-  { name: "Settings", icon: FiSettings, href: "/admin" },
+  { name: "Settings", icon: FiSettings, href: "/admin/settings" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -60,11 +61,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 
-      {linkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} href={link.href}>
-          {link.name}
-        </NavItem>
-      ))}
+      <VStack alignItems='stretch'>
+        {linkItems.map((link) => (
+          <NavItem key={link.name} icon={link.icon} href={link.href}>
+            {link.name}
+          </NavItem>
+        ))}
+      </VStack>
     </Box>
   );
 };
@@ -80,10 +83,14 @@ const NavItem = ({ icon, children, ...rest }) => {
           borderRadius="lg"
           role="group"
           cursor="pointer"
-          _hover={{
-            bg: "blue.400",
-            color: "white",
-          }}
+          _hover={
+            Router.pathname === rest.href
+              ? {}
+              : { bg: "blue.200", color: "white" }
+          }
+          bg={Router.pathname === rest.href ? "blue.400" : "transparent"}
+          color={Router.pathname === rest.href ? "white" : "gray.900"}
+          transition={"all 0.1s ease"}
           {...rest}
         >
           {icon && (
