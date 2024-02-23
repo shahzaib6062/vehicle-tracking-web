@@ -1,6 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { auth, firestore } from "@/firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { collection, getDoc, doc } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/router";
@@ -34,6 +38,8 @@ const loginFormSchema = z.object({
 
 const handleLogin = async ({ email, password }) => {
   try {
+    await setPersistence(auth, browserLocalPersistence);
+
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,

@@ -1,6 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { auth, firestore } from "@/firebase/firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  createUserWithEmailAndPassword,
+  setPersistence,
+  updateProfile,
+} from "firebase/auth";
 import { collection, getDoc, doc, setDoc } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/router";
@@ -35,6 +40,8 @@ const registerFormSchema = z.object({
 
 const handleRegister = async ({ username, email, password }) => {
   try {
+    await setPersistence(auth, browserLocalPersistence);
+
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
