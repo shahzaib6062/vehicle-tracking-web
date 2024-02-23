@@ -1,6 +1,5 @@
 import DefaultSpinner from "@/components/ui/defaultSpinner";
 import { auth, firestore } from "@/firebase/firebase";
-import { Box, Text } from "@chakra-ui/layout";
 import { collection, doc, getDoc } from "@firebase/firestore";
 import Router from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -52,7 +51,7 @@ export function AuthProvider({ children }) {
     return () => {
       unsubscribe();
     };
-  }, [user]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, saveUser, removeUser }}>
