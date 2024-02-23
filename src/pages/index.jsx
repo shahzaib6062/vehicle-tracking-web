@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Flex, Box, Heading, Input, Button, useToast } from "@chakra-ui/react";
-import { auth, firestore } from "../../firebase/firebase";
+import { auth, firestore } from "../firebase/firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { useUser } from "../context/UsersContext";
+import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
@@ -14,7 +14,7 @@ const Home = () => {
   const [password, setPassword] = useState("");
   const toast = useToast();
   const router = useRouter();
-  const { updateUser } = useUser();
+  const { updateUser } = useAuth();
 
   const handleLogin = async () => {
     try {

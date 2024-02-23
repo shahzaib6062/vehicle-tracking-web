@@ -11,9 +11,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Logout from "./logout";
-import { useUser } from "../context/UsersContext";
+import { useAuth } from "../context/AuthContext";
 const Header = () => {
-  const { currentUser } = useUser();
+  const { currentUser } = useAuth();
 
   return (
     <Flex
@@ -34,6 +34,7 @@ const Header = () => {
           src={currentUser?.avatar}
         />
         {currentUser?.username}
+
         <Logout />
       </Flex>
     </Flex>

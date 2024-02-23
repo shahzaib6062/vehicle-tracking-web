@@ -11,7 +11,6 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  HStack,
   InputRightElement,
   Stack,
   Button,
@@ -63,7 +62,6 @@ const handleRegister = async ({ username, email, password }) => {
       ...userDoc.data(),
     };
   } catch (error) {
-    console.log("🚀 ~ file: register.jsx:66 ~ handleRegister ~ error:", error)
     if (error.code === "auth/email-already-in-use") {
       throw new Error(
         "The email address is already in use by another account.",
@@ -179,16 +177,24 @@ function Register() {
                   bg={"blue.400"}
                   color={"white"}
                   _hover={{ bg: "blue.500" }}
-                  disabled={isRegistering}
                   type="submit"
+                  isLoading={isRegistering}
+                  loadingText="Registering..."
                 >
-                  {isRegistering ? "Registering..." : "Register"}
+                  Register
                 </Button>
               </Stack>
 
               <Stack pt={6}>
                 <Text align={"center"}>
-                  Already a user? <Link color={"blue.400"}>Login</Link>
+                  Already a user?{" "}
+                  <Link
+                    color="blue.400"
+                    _hover={{ color: "blue.500" }}
+                    href="/login"
+                  >
+                    Login
+                  </Link>
                 </Text>
               </Stack>
             </Stack>

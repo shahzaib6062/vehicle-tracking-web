@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import Header from "@/component/header";
 import AuthWrapper from "@/component/authWrapper";
-import { db } from "../../../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { Image } from "@chakra-ui/react";
 import MapComponent from "@/component/MapComponent";

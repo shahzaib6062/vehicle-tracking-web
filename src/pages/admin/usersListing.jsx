@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase/firebase";
+import { db } from "../../firebase/firebase";
 export default function Users() {
   const [allUsers, setAllUsers] = useState([]);
   const [loading, setLoading] = useState(true);

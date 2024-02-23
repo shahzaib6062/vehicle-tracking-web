@@ -1,23 +1,18 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
-import { auth } from "../../firebase/firebase";
-import { useUser } from "../context/UsersContext";
+import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
+import { signOut } from "firebase/auth";
 
 const Logout = () => {
-  const { updateUser } = useUser();
+  const { removeUser } = useAuth();
   const router = useRouter();
 
   const handleLogout = async () => {
     try {
-      await auth.signOut();
+      await signOut();
 
-      updateUser({
-        uid: null,
-        email: "",
-        username: "",
-        role: "",
-      });
+      removeUser();
       router.push("/");
     } catch (error) {
       console.error("Logout failed:", error);

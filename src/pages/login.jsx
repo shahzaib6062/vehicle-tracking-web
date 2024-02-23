@@ -11,13 +11,11 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  HStack,
   InputRightElement,
   Stack,
   Button,
   Heading,
   Text,
-  Link,
   useToast,
   FormErrorMessage,
 } from "@chakra-ui/react";
@@ -27,6 +25,7 @@ import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Head from "next/head";
+import { Link } from "@chakra-ui/next-js";
 
 const loginFormSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -169,7 +168,13 @@ function Login() {
               <Stack pt={6}>
                 <Text align={"center"}>
                   Don&apos;t have an account?{" "}
-                  <Link color={"blue.400"}>Register</Link>
+                  <Link
+                    color="blue.400"
+                    _hover={{ color: "blue.500" }}
+                    href="/register"
+                  >
+                    Register
+                  </Link>
                 </Text>
               </Stack>
             </Stack>
