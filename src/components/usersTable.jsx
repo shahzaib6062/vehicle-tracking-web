@@ -34,7 +34,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import {
-  useActiveUsers as useAllUsers,
+  useAllUsers,
   useDisableUser,
   useEnableUser,
 } from "@/lib/users";
