@@ -12,6 +12,8 @@ function Home() {
       } else {
         Router.replace("/user");
       }
+    } else {
+      Router.replace("/login");
     }
   }, [user]);
 

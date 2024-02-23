@@ -4,6 +4,7 @@ import {
   browserLocalPersistence,
   setPersistence,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { collection, getDoc, doc } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
@@ -55,12 +56,22 @@ const handleLogin = async ({ email, password }) => {
     if (!userDoc.exists())
       throw new Error("Invalid Credentials. Please try again.");
 
+    if (!userDoc.data().isActive) {
+      await signOut(auth);
+
+      throw new Error("Your account is disabled. Please contact an Admin.");
+    }
+
     return {
       id: userDoc.id,
       ...userDoc.data(),
     };
   } catch (error) {
-    throw new Error("Invalid Credentials. Please try again.");
+    if(error.code === "auth/wrong-password") {
+      throw new Error("Invalid Credentials. Please try again.");
+    }
+
+    throw error;
   }
 };
 
