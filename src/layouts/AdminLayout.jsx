@@ -33,7 +33,7 @@ import {
 const linkItems = [
   { name: "Home", icon: FiHome, href: "/admin" },
   { name: "Users", icon: FiUsers, href: "/admin/users" },
-  { name: "Settings", icon: FiSettings, href: "/admin/settings" },
+  { name: "Service Providers", icon: FiSettings, href: "/admin/service-providers" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -56,7 +56,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         mb="4"
       >
         <Text fontSize="xl" fontFamily="monospace" fontWeight="bold">
-          Vehicle Tracker
+          RoadRanger
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
@@ -146,7 +146,7 @@ const Header = ({ onOpen, ...rest }) => {
         fontFamily="monospace"
         fontWeight="bold"
       >
-        Vehicle Tracker
+        RoadRanger
       </Text>
 
       <Flex alignItems={"center"}>

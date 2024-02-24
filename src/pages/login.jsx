@@ -124,7 +124,7 @@ function Login() {
   return (
     <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"gray.50"}>
       <Head>
-        <title>Login | Vehicle Tracker</title>
+        <title>Login | RoadRanger</title>
       </Head>
 
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
@@ -182,7 +182,7 @@ function Login() {
                 </Button>
               </Stack>
 
-              <Stack pt={6}>
+              {/* <Stack pt={6}>
                 <Text align={"center"}>
                   Don&apos;t have an account?{" "}
                   <Link
@@ -193,7 +193,7 @@ function Login() {
                     Register
                   </Link>
                 </Text>
-              </Stack>
+              </Stack> */}
             </Stack>
           </Box>
         </form>

@@ -1,25 +1,27 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { db, firestore } from "../../../firebase/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, getDoc } from "firebase/firestore";
 import AuthWrapper from "@/components/authWrapper";
 import { doc } from "firebase/firestore";
 export default function UserDetails() {
-  const router = useRouter();
-  const { id } = router.query;
   const [userData, setUserData] = useState(null);
+  const { uid } = Router.query;
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const docRef = doc(db, "users", id);
-      const q = query(collection(db, "users"), where("uid", "==", id));
-      const querySnapshot = await getDocs(q);
+      const docRef = doc(collection(firestore, "users"), uid);
+      const userDoc = await getDoc(docRef);
 
-      if (id) {
-        fetchUserData();
+      if (userDoc.exists()) {
+        setUserData(userDoc.data());
       }
     };
-  }, [id]);
+
+    if (uid) {
+      fetchUserData();
+    }
+  }, [uid]);
 
   if (!userData) {
     return <div>Loading...</div>;
@@ -29,8 +31,8 @@ export default function UserDetails() {
     <AuthWrapper authRoles={["admin"]}>
       <div>
         <h1>User Details</h1>
-        <p>ID: {userData.id}</p>
-        <p>Name: {userData.name}</p>
+        <p>ID: {userData.uid}</p>
+        <p>Name: {userData.username}</p>
         <p>Email: {userData.email}</p>
       </div>
     </AuthWrapper>

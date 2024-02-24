@@ -29,8 +29,6 @@ function UserLocationMarker({ user }) {
 
   if (!coords) return null;
 
-  console.log("🚀 ~ file: index.jsx:42 ~ UserLocationMarker ~ coords:", coords)
-
   return (
     <MarkerF
       position={{
@@ -66,7 +64,7 @@ function AdminDashboard() {
   return (
     <AuthWrapper authRoles={["admin"]}>
       <Head>
-        <title>Admin | Vehicle Tracker</title>
+        <title>Admin | RoadRanger</title>
       </Head>
 
       <AdminLayout>
@@ -119,7 +117,7 @@ function AdminDashboard() {
 //   return (
 //     <AuthWrapper authRoles={["admin"]}>
 //       <Head>
-//         <title>Admin | Vehicle Tracker</title>
+//         <title>Admin | RoadRanger</title>
 //       </Head>
 
 //       <AdminLayout>
@@ -146,7 +144,6 @@ function AdminDashboard() {
 //                 // onGoogleApiLoaded={({ map }) => setMap(map)}
 //               >
 //                 {usersWithLocation.map((user) => {
-//                   console.log(user.location);
 //                   return (
 //                     <UserLocationMarker
 //                       lat={user.location?.latitude}

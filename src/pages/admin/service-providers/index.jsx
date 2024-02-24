@@ -2,20 +2,20 @@ import React from "react";
 import AuthWrapper from "@/components/authWrapper";
 import AdminLayout from "@/layouts/AdminLayout";
 import Head from "next/head";
-import UsersTable from "@/components/usersTable";
+import ServiceProvidersTable from "@/components/serviceProvidersTable";
 
-function AdminUsers() {
+function AdminServiceProviders() {
   return (
     <AuthWrapper authRoles={["admin"]}>
       <Head>
-        <title>Users | RoadRanger</title>
+        <title>Service Providers | RoadRanger</title>
       </Head>
 
       <AdminLayout>
-        <UsersTable />
+        <ServiceProvidersTable />
       </AdminLayout>
     </AuthWrapper>
   );
 }
 
-export default AdminUsers;
+export default AdminServiceProviders;
