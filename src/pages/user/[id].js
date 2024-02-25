@@ -10,10 +10,9 @@ import {
   Card,
 } from "@chakra-ui/react";
 import AuthWrapper from "@/components/authWrapper";
-import { db } from "../../firebase/firebase";
+import { firestore } from "@/firebase/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { Image } from "@chakra-ui/react";
-import MapComponent from "@/components/MapComponent";
 
 export default function UserDetails() {
   const router = useRouter();
@@ -24,7 +23,7 @@ export default function UserDetails() {
 
   const fetchDataLocation = useCallback(async () => {
     const locationQ = query(
-      collection(db, "locations"),
+      collection(firestore, "locations"),
       // ,      where("uid", "==", id)
     );
     const locationSnapshot = await getDocs(locationQ);
@@ -35,7 +34,7 @@ export default function UserDetails() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const q = query(collection(db, "users"), where("uid", "==", id));
+      const q = query(collection(firestore, "users"), where("uid", "==", id));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setUserData(doc.data());
@@ -43,7 +42,7 @@ export default function UserDetails() {
     };
 
     const fetchVehicleData = async () => {
-      const q = query(collection(db, "vehicles"), where("userId", "==", id));
+      const q = query(collection(firestore, "vehicles"), where("userId", "==", id));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setVehicleData(doc.data());
