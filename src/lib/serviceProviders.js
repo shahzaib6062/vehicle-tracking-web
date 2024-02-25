@@ -15,11 +15,16 @@ export function useAllServiceProviders() {
   return useQuery({
     queryKey: ["serviceProviders"],
     queryFn: async () => {
-      const q = query(collection(firestore, "serviceProviders"));
+      const q = query(collection(firestore, "users"));
       const querySnapshot = await getDocs(q);
 
       const serviceProviders = [];
+
       querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+
+        if (!userData.isServiceAccount) return;
+
         serviceProviders.push({
           uid: doc.id,
           id: doc.id,

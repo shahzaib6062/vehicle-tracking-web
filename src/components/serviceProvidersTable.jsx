@@ -181,7 +181,7 @@ export default function ServiceProvidersTable() {
 
         <Spacer />
 
-        <Button
+        {/* <Button
           variant={"outline"}
           colorScheme="blue"
           size="sm"
@@ -190,7 +190,7 @@ export default function ServiceProvidersTable() {
           mt="1"
         >
           Add Service Provider
-        </Button>
+        </Button> */}
       </Flex>
 
       <UpsertServiceProviderModal
@@ -215,9 +215,9 @@ export default function ServiceProvidersTable() {
                 p={0}
                 w={0}
               />
-              {["Title", "Email", "Services", "Actions"].map((title) => (
-                <Th key={title} color="white" py="6">
-                  {title}
+              {["Username", "Email", "Services", "Actions"].map((label) => (
+                <Th key={label} color="white" py="6">
+                  {label}
                 </Th>
               ))}
               <Th
@@ -232,7 +232,7 @@ export default function ServiceProvidersTable() {
             {serviceProviders?.map((serviceProvider) => (
               <Tr key={serviceProvider.uid}>
                 <Td />
-                <Td fontWeight={"medium"}>{serviceProvider.title}</Td>
+                <Td fontWeight={"medium"}>{serviceProvider.username}</Td>
                 <Td>{serviceProvider.email}</Td>
                 <Td>
                   <Flex wrap={"wrap"} gap={"2"} maxW={340}>

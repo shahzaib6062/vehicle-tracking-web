@@ -14,6 +14,8 @@ export function useAllUsers() {
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
 
+        if(userData.isServiceAccount) return;
+
         users.push({
           uid: doc.id,
           role: userData.role || "user",
