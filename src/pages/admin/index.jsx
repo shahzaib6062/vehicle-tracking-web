@@ -77,7 +77,7 @@ function AdminDashboard() {
             borderRadius={"md"}
             mt={4}
           >
-            {isLoadingUsers ? (
+            {isLoadingUsers || !isLoaded ? (
               <DefaultSpinner />
             ) : (
               <GoogleMap
