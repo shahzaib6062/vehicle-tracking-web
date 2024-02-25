@@ -1,20 +1,18 @@
 import { firestore } from "@/firebase/firebase";
 import { useToast } from "@chakra-ui/toast";
-import { collection, doc, getDocs, query, setDoc } from "@firebase/firestore";
+import { collection, doc, getDocs, query, setDoc,where } from "@firebase/firestore";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useAllUsers() {
   return useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const q = query(collection(firestore, "users"));
+      const q = query(collection(firestore, "users"), where("isServiceAccount", "==", false));
       const querySnapshot = await getDocs(q);
 
       const users = [];
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
-
-        if(userData.isServiceAccount) return;
 
         users.push({
           uid: doc.id,

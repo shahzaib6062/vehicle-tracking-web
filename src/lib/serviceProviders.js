@@ -8,6 +8,7 @@ import {
   addDoc,
   setDoc,
   deleteDoc,
+  where
 } from "@firebase/firestore";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -15,16 +16,12 @@ export function useAllServiceProviders() {
   return useQuery({
     queryKey: ["serviceProviders"],
     queryFn: async () => {
-      const q = query(collection(firestore, "users"));
+      const q = query(collection(firestore, "users"), where("isServiceAccount", "==", true));
       const querySnapshot = await getDocs(q);
 
       const serviceProviders = [];
 
       querySnapshot.forEach((doc) => {
-        const userData = doc.data();
-
-        if (!userData.isServiceAccount) return;
-
         serviceProviders.push({
           uid: doc.id,
           id: doc.id,
