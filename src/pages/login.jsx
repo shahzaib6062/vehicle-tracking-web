@@ -67,7 +67,7 @@ const handleLogin = async ({ email, password }) => {
       ...userDoc.data(),
     };
   } catch (error) {
-    if(error.code === "auth/wrong-password") {
+    if (error.code === "auth/wrong-password") {
       throw new Error("Invalid Credentials. Please try again.");
     }
 
@@ -83,19 +83,26 @@ function Login() {
 
   const { mutateAsync: login, isPending: isLoggingIn } = useMutation({
     mutationFn: handleLogin,
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       saveUser(data);
 
-      toast({
-        title: "Login successful",
-        status: "success",
-        isClosable: true,
-      });
-
       if (data.role === "admin") {
+        toast({
+          title: "Login successful",
+          status: "success",
+          isClosable: true,
+        });
+
         router.push("/admin");
       } else {
-        router.push("/user");
+        await auth.signOut();
+
+        toast({
+          title: "Login Failed",
+          description: "You are not authorized to access admin panel. Please use the mobile app.",
+          status: "warning",
+          isClosable: true,
+        });
       }
     },
     onError: (error) => {
