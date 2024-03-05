@@ -32,6 +32,7 @@ import {
 
 const linkItems = [
   { name: "Home", icon: FiHome, href: "/admin" },
+  { name: "Users", icon: FiUsers, href: "/admin/users" },
   {
     name: "Service Providers",
     icon: FiSettings,
