@@ -62,7 +62,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <Text fontSize="xl" fontFamily="monospace" fontWeight="bold">
           RoadRanger
         </Text>
-        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+        <CloseButton onClick={onClose} display={{ base: "flex", md: "none" }} />
       </Flex>
 
       <VStack alignItems="stretch">
