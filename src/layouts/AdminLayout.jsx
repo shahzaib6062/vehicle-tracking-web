@@ -30,11 +30,7 @@ import {
   FiChevronDown,
 } from "react-icons/fi";
 
-const linkItems = [
-  { name: "Home", icon: FiHome, href: "/admin" },
-  { name: "Users", icon: FiUsers, href: "/admin/users" },
-  { name: "Service Providers", icon: FiSettings, href: "/admin/service-providers" },
-];
+const linkItems = [{ name: "Home", icon: FiHome, href: "/admin" }];
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -61,7 +57,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 
-      <VStack alignItems='stretch'>
+      <VStack alignItems="stretch">
         {linkItems.map((link) => (
           <NavItem key={link.name} icon={link.icon} href={link.href}>
             {link.name}
