@@ -30,7 +30,14 @@ import {
   FiChevronDown,
 } from "react-icons/fi";
 
-const linkItems = [{ name: "Home", icon: FiHome, href: "/admin" }];
+const linkItems = [
+  { name: "Home", icon: FiHome, href: "/admin" },
+  {
+    name: "Service Providers",
+    icon: FiSettings,
+    href: "/admin/service-providers",
+  },
+];
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
