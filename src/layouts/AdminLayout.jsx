@@ -32,8 +32,11 @@ import {
 
 const linkItems = [
   { name: "Home", icon: FiHome, href: "/admin" },
-  { name: "Users", icon: FiUsers, href: "/admin/users" },
-  { name: "Service Providers", icon: FiSettings, href: "/admin/service-providers" },
+  {
+    name: "Service Providers",
+    icon: FiSettings,
+    href: "/admin/service-providers",
+  },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -61,7 +64,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
 
-      <VStack alignItems='stretch'>
+      <VStack alignItems="stretch">
         {linkItems.map((link) => (
           <NavItem key={link.name} icon={link.icon} href={link.href}>
             {link.name}
