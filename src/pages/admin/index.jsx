@@ -3,7 +3,6 @@ import AuthWrapper from "@/components/authWrapper";
 import AdminLayout from "@/layouts/AdminLayout";
 import Head from "next/head";
 import { Box, Heading } from "@chakra-ui/layout";
-import GoogleMapReact from "google-map-react";
 import { useAllUsers } from "@/lib/users";
 import { ref, onValue } from "firebase/database";
 import { realtimeDB } from "@/firebase/firebase";
